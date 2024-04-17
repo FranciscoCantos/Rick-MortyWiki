@@ -5,7 +5,8 @@ struct CharacterCardView: View {
     
     var body: some View {
         VStack {
-            AsyncImage(url: item.imageUrl) { phase in
+            AsyncImage(url: item.imageUrl,
+                       transaction: .init(animation: .bouncy(duration: 1))) { phase in
                 if let image = phase.image {
                     image.resizable()
                         .aspectRatio(contentMode: .fit)
@@ -16,20 +17,20 @@ struct CharacterCardView: View {
                     ProgressView().progressViewStyle(.circular)
                 }
             }
-            .clipShape(RoundedRectangle(cornerRadius: 8))
+            .clipShape(RoundedRectangle(cornerRadius: 16))
             Text(item.name.capitalized)
-                .font(.headline)
+                .font(.system(size: 12))
                 .bold()
                 .tint(.white)
             Text(item.description)
-                .font(.subheadline)
+                .font(.system(size: 10))
                 .tint(.white)
             Text(item.species)
-                .font(.subheadline)
+                .font(.system(size: 10))
                 .tint(.white)
         }
         .padding()
         .background(Color.rmGreyLight)
-        .clipShape(RoundedRectangle(cornerRadius: 8))
+        .clipShape(RoundedRectangle(cornerRadius: 16))
     }
 }

@@ -5,9 +5,7 @@ struct CharacterDetailViewItem {
     let name: String
     let imageUrl: URL?
     let status: String
-    let bulletStatus: String
     let species: String
-    let description: String
     let url: URL?
     let type: String
     let gender: CharacterGender
@@ -29,16 +27,5 @@ struct CharacterDetailViewItem {
         self.location = model.location
         self.episodesList = model.episodesList
         self.createdDate = model.createdDate
-        
-        switch model.status {
-        case .alive:
-            self.bulletStatus = "🟢"
-        case .dead:
-            self.bulletStatus = "🔴"
-        case .unknown:
-            self.bulletStatus = "⚫️"
-        }
-        
-        self.description = bulletStatus + status
     }
 }

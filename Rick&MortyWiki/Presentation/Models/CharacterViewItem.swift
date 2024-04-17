@@ -18,13 +18,13 @@ struct CharacterViewItem {
         
         switch model.status {
         case .alive:
-            self.bulletStatus = "🟢"
+            self.bulletStatus = "😎"
         case .dead:
-            self.bulletStatus = "🔴"
+            self.bulletStatus = "💀"
         case .unknown:
-            self.bulletStatus = "⚫️"
+            self.bulletStatus = "❓"
         }
         
-        self.description = bulletStatus + " - " + status
+        self.description = bulletStatus + " " + status
     }
 }

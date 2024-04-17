@@ -12,7 +12,7 @@ struct CharactersListView: View {
     }
     
     var body: some View {
-        VStack {
+        NavigationStack {
             if viewModel.showLoading {
                 ProgressView()
                     .progressViewStyle(.circular)
@@ -29,37 +29,37 @@ struct CharactersListView: View {
                     .buttonStyle(.borderedProminent)
                     
                 } else {
-                    NavigationStack {
-                        ScrollView {
-                            LazyVGrid(columns: [GridItem(.flexible(minimum: 100))],
-                                      content: {
-                                if viewModel.charactersItems.isEmpty {
-                                    VStack(alignment: .center) {
-                                        Text("Sorry, no results were found. Please repeat your search.")
-                                            .font(.title)
-                                    }
-                                } else {
-                                    ForEach(viewModel.charactersItems, id: \.id) { character in
-                                        NavigationLink {
-                                            createCharacterDetailView.createView(forId: character.id)
-                                        } label: {
-                                            CharacterCardView(item: character)
-                                        }
+                    ScrollView {
+                        LazyVGrid(columns: [GridItem(.adaptive(minimum: 100)),
+                                            GridItem(.adaptive(minimum: 100)),
+                                            GridItem(.adaptive(minimum: 100))],
+                                  content: {
+                            if viewModel.charactersItems.isEmpty {
+                                VStack(alignment: .center) {
+                                    Text("Sorry, no results were found. Please repeat your search.")
+                                        .font(.title)
+                                }
+                            } else {
+                                ForEach(viewModel.charactersItems, id: \.id) { character in
+                                    NavigationLink {
+                                        createCharacterDetailView.createView(forId: character.id)
+                                    } label: {
+                                        CharacterCardView(item: character)
                                     }
                                 }
-                            }).searchable(text: $searchText,
-                                          placement: .navigationBarDrawer(displayMode:.always))
-                                .preferredColorScheme(.dark)
-                                .onChange(of: searchText) { oldValue, newValue in
-                                viewModel.search(cryptoName: newValue)
                             }
-                            .padding(20)
-                        }.background(Color.rmGreyDark)
-                    }.tint(.white)
+                        }).searchable(text: $searchText,
+                                      placement: .navigationBarDrawer(displayMode:.always))
+                        .preferredColorScheme(.dark)
+                        .onChange(of: searchText) { oldValue, newValue in
+                            viewModel.search(cryptoName: newValue)
+                        }
+                        .padding(20)
+                    }.background(Color.rmGreyDark)
                 }
             }
         }.onAppear {
             viewModel.onAppear()
-        }
+        }.tint(.white)
     }
 }
