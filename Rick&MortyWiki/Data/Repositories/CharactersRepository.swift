@@ -39,7 +39,6 @@ class CharactersRepository: CharactersRepositoryProtocol {
     }
     
     func getCharacterDetail(forId id: Int) async -> Result<CharacterInfo, DomainError> {
-       //return .failure(.idNotFound)
         let cacheCharacters = await cacheDataSource.getCharacters()
         if !cacheCharacters.isEmpty {
             if let character = cacheCharacters.first(where: { $0.id == id }) {

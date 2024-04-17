@@ -92,17 +92,6 @@ struct CharacterDetailView: View {
                             }
                         }
                         .padding(EdgeInsets(top: 20, leading: 20, bottom: 20, trailing: 20))
-                        //                    VStack(alignment: .leading) {
-                        //                        Text("Episodes:")
-                        //                            .font(.system(size: 16))
-                        //                            .bold()
-                        //                            .foregroundStyle(.white)
-                        //                        List(characterItem.episodesList, id: \.self) { episode in
-                        //                            Text(episode)
-                        //                                .font(.system(size: 16))
-                        //                                .tint(.white)
-                        //                        }
-                        //                    }.padding(EdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 20))
                         if let linkUrl = characterItem.url {
                             Link(destination: linkUrl) {
                                 Image(systemName: "link.circle.fill")
