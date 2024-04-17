@@ -27,6 +27,10 @@ class CharacterDetailRepository: CharacterDetailRepositoryProtocol {
             return .failure(.idNotFound)
         }
         
+        if characterDto.id != id {
+            return .failure(.idNotFound)
+        }
+        
         let character = CharacterInfo(dto: characterDto)
         
         return .success(character)
