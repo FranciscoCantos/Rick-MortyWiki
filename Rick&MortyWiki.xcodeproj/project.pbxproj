@@ -37,6 +37,9 @@
 		644FAFDA2BCECF9D000574BB /* CharactersListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644FAFD92BCECF9D000574BB /* CharactersListViewModel.swift */; };
 		644FAFDC2BCED33D000574BB /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644FAFDB2BCED33D000574BB /* Result.swift */; };
 		644FAFDE2BCED40C000574BB /* CharactersListViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644FAFDD2BCED40C000574BB /* CharactersListViewFactory.swift */; };
+		6464200B2BD0683800183BE3 /* Rick_MortyWikiTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6464200A2BD0683800183BE3 /* Rick_MortyWikiTests.swift */; };
+		6464200F2BD0686400183BE3 /* Rick_MortyWikiUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6464200D2BD0686400183BE3 /* Rick_MortyWikiUITestsLaunchTests.swift */; };
+		646420102BD0686400183BE3 /* Rick_MortyWikiUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6464200E2BD0686400183BE3 /* Rick_MortyWikiUITests.swift */; };
 		64DAC05C2BCF1165008268F6 /* GetCharactersListUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64DAC05B2BCF1165008268F6 /* GetCharactersListUseCase.swift */; };
 		64DAC05F2BCF121A008268F6 /* CharacterDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64DAC05E2BCF121A008268F6 /* CharacterDTO.swift */; };
 		64DAC0612BCF12E6008268F6 /* CharacterDomainMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64DAC0602BCF12E6008268F6 /* CharacterDomainMapper.swift */; };
@@ -105,6 +108,10 @@
 		644FAFD92BCECF9D000574BB /* CharactersListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharactersListViewModel.swift; sourceTree = "<group>"; };
 		644FAFDB2BCED33D000574BB /* Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		644FAFDD2BCED40C000574BB /* CharactersListViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharactersListViewFactory.swift; sourceTree = "<group>"; };
+		6464200A2BD0683800183BE3 /* Rick_MortyWikiTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Rick_MortyWikiTests.swift; sourceTree = "<group>"; };
+		6464200C2BD0686400183BE3 /* Rick&MortyWikiUITests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Rick&MortyWikiUITests-Bridging-Header.h"; sourceTree = "<group>"; };
+		6464200D2BD0686400183BE3 /* Rick_MortyWikiUITestsLaunchTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Rick_MortyWikiUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		6464200E2BD0686400183BE3 /* Rick_MortyWikiUITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Rick_MortyWikiUITests.swift; sourceTree = "<group>"; };
 		64DAC05B2BCF1165008268F6 /* GetCharactersListUseCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetCharactersListUseCase.swift; sourceTree = "<group>"; };
 		64DAC05E2BCF121A008268F6 /* CharacterDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterDTO.swift; sourceTree = "<group>"; };
 		64DAC0602BCF12E6008268F6 /* CharacterDomainMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterDomainMapper.swift; sourceTree = "<group>"; };
@@ -261,6 +268,7 @@
 		644FAEE72BCEBD9D000574BB /* Rick&MortyWikiTests */ = {
 			isa = PBXGroup;
 			children = (
+				6464200A2BD0683800183BE3 /* Rick_MortyWikiTests.swift */,
 				6423C7152BD0612200AB94DF /* UseCases */,
 				6423C70A2BD027CA00AB94DF /* Helpers */,
 				6423C7052BD0276000AB94DF /* Repositories */,
@@ -271,6 +279,9 @@
 		644FAEF12BCEBD9D000574BB /* Rick&MortyWikiUITests */ = {
 			isa = PBXGroup;
 			children = (
+				6464200E2BD0686400183BE3 /* Rick_MortyWikiUITests.swift */,
+				6464200D2BD0686400183BE3 /* Rick_MortyWikiUITestsLaunchTests.swift */,
+				6464200C2BD0686400183BE3 /* Rick&MortyWikiUITests-Bridging-Header.h */,
 			);
 			path = "Rick&MortyWikiUITests";
 			sourceTree = "<group>";
@@ -520,6 +531,7 @@
 					};
 					644FAEED2BCEBD9D000574BB = {
 						CreatedOnToolsVersion = 15.3;
+						LastSwiftMigration = 1530;
 						TestTargetID = 644FAED12BCEBD99000574BB;
 					};
 				};
@@ -622,6 +634,7 @@
 				6423C70E2BD0298300AB94DF /* CharacterDetailRepositoryStub.swift in Sources */,
 				6423C71B2BD062F800AB94DF /* GetCharactersListUseCaseTests.swift in Sources */,
 				6423C7102BD02ACF00AB94DF /* APICharactersDataSourceStub.swift in Sources */,
+				6464200B2BD0683800183BE3 /* Rick_MortyWikiTests.swift in Sources */,
 				6423C7172BD0615100AB94DF /* GetCharacterDetailUseCaseTests.swift in Sources */,
 				6423C7142BD05BA000AB94DF /* SearchCharacterUseCaseTests.swift in Sources */,
 				6423C7092BD027C400AB94DF /* CharactersRepositoryStub.swift in Sources */,
@@ -634,6 +647,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				646420102BD0686400183BE3 /* Rick_MortyWikiUITests.swift in Sources */,
+				6464200F2BD0686400183BE3 /* Rick_MortyWikiUITestsLaunchTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -884,6 +899,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = E4FS2YTF43;
@@ -892,6 +908,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "UtilApps.Rick-MortyWikiUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_OBJC_BRIDGING_HEADER = "Rick&MortyWikiUITests/Rick&MortyWikiUITests-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = "Rick&MortyWiki";
@@ -902,6 +920,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = E4FS2YTF43;
@@ -910,6 +929,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "UtilApps.Rick-MortyWikiUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_OBJC_BRIDGING_HEADER = "Rick&MortyWikiUITests/Rick&MortyWikiUITests-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = "Rick&MortyWiki";
