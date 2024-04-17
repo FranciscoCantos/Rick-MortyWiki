@@ -2,7 +2,6 @@ import Foundation
 
 protocol CharactersRepositoryProtocol {
     func getAllCharactersList() async -> Result<[CharacterInfo], DomainError>
-    func getCharacterDetail(forId: Int) async -> Result<CharacterInfo, DomainError>
     func searchCharacter(byName: String) async -> Result<[CharacterInfo], DomainError>
 }
 
@@ -37,26 +36,7 @@ class CharactersRepository: CharactersRepositoryProtocol {
 
         return .success(charactersListDomain)
     }
-    
-    func getCharacterDetail(forId id: Int) async -> Result<CharacterInfo, DomainError> {
-        let cacheCharacters = await cacheDataSource.getCharacters()
-        if !cacheCharacters.isEmpty {
-            if let character = cacheCharacters.first(where: { $0.id == id }) {
-                return .success(character)
-            }
-        }
         
-        let result = await apiDataSource.getCharacter(forId: id)
-        
-        guard case .success(let characterDto) = result else {
-            return .failure(.idNotFound)
-        }
-        
-        let character = CharacterInfo(dto: characterDto)
-        
-        return .success(character)
-    }
-    
     func searchCharacter(byName name: String) async -> Result<[CharacterInfo], DomainError> {
         let result = await getAllCharactersList()
         

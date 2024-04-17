@@ -12,9 +12,9 @@ class CharacterDetailViewFactory: CreateCharacterDetailViewProtocol {
         return GetCharacterDetailUseCase(repository: createRepository())
     }
     
-    private func createRepository() -> CharactersRepositoryProtocol {
-        return CharactersRepository(apiDataSource: createAPIDataSource(),
-                                    cacheDataSource: createCacheDataSource())
+    private func createRepository() -> CharacterDetailRepositoryProtocol {
+        return CharacterDetailRepository(apiDataSource: createAPIDataSource(),
+                                         cacheDataSource: createCacheDataSource())
     }
     
     private func createCacheDataSource() -> CharactersCacheDataSourceProtocol {
