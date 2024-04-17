@@ -56,6 +56,4 @@ class SwiftDataContainer: CacheContainerProtocol {
         
         try? context.save()
     }
-    
-    // KURRO todo manage errors
 }
