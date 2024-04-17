@@ -274,9 +274,9 @@
 		644FAEE72BCEBD9D000574BB /* Rick&MortyWikiTests */ = {
 			isa = PBXGroup;
 			children = (
+				6464200A2BD0683800183BE3 /* Rick_MortyWikiTests.swift */,
 				6423C70A2BD027CA00AB94DF /* Helpers */,
 				6423C7052BD0276000AB94DF /* Repositories */,
-				6464200A2BD0683800183BE3 /* Rick_MortyWikiTests.swift */,
 				6423C7152BD0612200AB94DF /* UseCases */,
 			);
 			path = "Rick&MortyWikiTests";

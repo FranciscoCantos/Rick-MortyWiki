@@ -1,7 +1,7 @@
 import Foundation
 @testable import Rick_MortyWiki
 
-class APICharactersDataSourceStub : APICharactersDataSourceProtocol {
+class APICharactersDataSourceStub: APICharactersDataSourceProtocol {
     private let charactersResult: Result<[CharacterDTO], HTTPClientError>
     private let characterResult: Result<CharacterDTO, HTTPClientError>
     
