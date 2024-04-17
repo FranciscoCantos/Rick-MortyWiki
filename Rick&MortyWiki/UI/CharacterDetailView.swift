@@ -11,17 +11,17 @@ struct CharacterDetailView: View {
         ZStack{
             ScrollView {
                 if let characterItem = viewModel.characterItem {
-                    AsyncImage(url: characterItem.imageUrl,
-                               content: { image in
-                        if let image = image.image {
+                    AsyncImage(url: characterItem.imageUrl) { phase in
+                        if let image = phase.image {
                             image.resizable()
                                 .aspectRatio(contentMode: .fit)
-                        } else if image.error != nil {
-                            Image("Placeholder")
+                        } else if phase.error != nil {
+                            Image("PlaceholderImage").resizable()
+                                .aspectRatio(contentMode: .fit)
                         } else {
                             ProgressView().progressViewStyle(.circular)
                         }
-                    })
+                    }
                     Text(characterItem.name)
                         .font(.title)
                         .bold()
@@ -72,18 +72,18 @@ struct CharacterDetailView: View {
                                 .foregroundStyle(.white)
                         }
                     }
-                    .padding(EdgeInsets(top: 20, leading: 20, bottom: 0, trailing: 20))
-                    VStack(alignment: .leading) {
-                        Text("Episodes:")
-                            .font(.system(size: 14))
-                            .bold()
-                            .foregroundStyle(.white)
-                        List(characterItem.episodesList, id: \.self) { episode in
-                            Text(episode)
-                                .font(.system(size: 14))
-                                .tint(.white)
-                        }
-                    }.padding(EdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 20))
+                    .padding(EdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 20))
+//                    VStack(alignment: .leading) {
+//                        Text("Episodes:")
+//                            .font(.system(size: 14))
+//                            .bold()
+//                            .foregroundStyle(.white)
+//                        List(characterItem.episodesList, id: \.self) { episode in
+//                            Text(episode)
+//                                .font(.system(size: 14))
+//                                .tint(.white)
+//                        }
+//                    }.padding(EdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 20))
                     if let linkUrl = characterItem.url {
                         Link(destination: linkUrl) {
                             Image(systemName: "link.circle.fill")

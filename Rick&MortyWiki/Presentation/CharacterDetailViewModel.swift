@@ -24,7 +24,7 @@ class CharactersDetailViewModel: ObservableObject {
                 handleError(error: result.failureValue as? DomainError)
                 return
             }
-                        
+            
             Task { @MainActor in
                 self.showLoading = false
                 self.errorMessage = nil

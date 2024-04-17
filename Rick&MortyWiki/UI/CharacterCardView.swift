@@ -5,17 +5,17 @@ struct CharacterCardView: View {
     
     var body: some View {
         VStack {
-            AsyncImage(url: item.imageUrl,
-                       content: { image in
-                if let image = image.image {
+            AsyncImage(url: item.imageUrl) { phase in
+                if let image = phase.image {
                     image.resizable()
                         .aspectRatio(contentMode: .fit)
-                } else if image.error != nil {
-                    Image("Placeholder")
+                } else if phase.error != nil {
+                    Image("PlaceholderImage").resizable()
+                        .aspectRatio(contentMode: .fit)
                 } else {
                     ProgressView().progressViewStyle(.circular)
                 }
-            })
+            }
             .clipShape(RoundedRectangle(cornerRadius: 8))
             Text(item.name.capitalized)
                 .font(.headline)

@@ -45,7 +45,6 @@
 		64DAC0802BCFCC12008268F6 /* CharacterDetailViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64DAC07F2BCFCC12008268F6 /* CharacterDetailViewItem.swift */; };
 		64DAC0822BCFCD11008268F6 /* CharacterDetailViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64DAC0812BCFCD11008268F6 /* CharacterDetailViewFactory.swift */; };
 		64DAC0842BCFCD38008268F6 /* CharacterDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64DAC0832BCFCD38008268F6 /* CharacterDetailView.swift */; };
-		64DAC0862BCFCEC1008268F6 /* CharacterDetailComponentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64DAC0852BCFCEC1008268F6 /* CharacterDetailComponentView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -106,7 +105,6 @@
 		64DAC07F2BCFCC12008268F6 /* CharacterDetailViewItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterDetailViewItem.swift; sourceTree = "<group>"; };
 		64DAC0812BCFCD11008268F6 /* CharacterDetailViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterDetailViewFactory.swift; sourceTree = "<group>"; };
 		64DAC0832BCFCD38008268F6 /* CharacterDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterDetailView.swift; sourceTree = "<group>"; };
-		64DAC0852BCFCEC1008268F6 /* CharacterDetailComponentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterDetailComponentView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -407,7 +405,6 @@
 				644FAF8D2BCEC0E8000574BB /* CharacterCardView.swift */,
 				644FAF8F2BCEC0E8000574BB /* CharactersListView.swift */,
 				64DAC0832BCFCD38008268F6 /* CharacterDetailView.swift */,
-				64DAC0852BCFCEC1008268F6 /* CharacterDetailComponentView.swift */,
 				6423C6ED2BCFE3BC00AB94DF /* CreateCharacterDetailViewProtocol.swift */,
 			);
 			path = UI;
@@ -594,7 +591,6 @@
 				64DAC0842BCFCD38008268F6 /* CharacterDetailView.swift in Sources */,
 				64DAC05C2BCF1165008268F6 /* GetCharactersListUseCase.swift in Sources */,
 				64DAC06E2BCFB400008268F6 /* CharactersCacheDataSource.swift in Sources */,
-				64DAC0862BCFCEC1008268F6 /* CharacterDetailComponentView.swift in Sources */,
 				64DAC0702BCFB457008268F6 /* SwiftDataContainer.swift in Sources */,
 				644FAFCC2BCEC0E8000574BB /* CharactersListView.swift in Sources */,
 				64DAC0822BCFCD11008268F6 /* CharacterDetailViewFactory.swift in Sources */,
