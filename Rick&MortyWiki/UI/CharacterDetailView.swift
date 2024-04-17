@@ -19,10 +19,15 @@ struct CharacterDetailView: View {
                         .clipShape(Circle())
                         .tint(.white)
                 } else if let errorMessage = viewModel.errorMessage {
-                    Button(errorMessage, role: .destructive) {
-                        viewModel.onAppear()
+                    VStack {
+                        Button(action: viewModel.onAppear) {
+                          Label(errorMessage, systemImage: "person.crop.circle.badge.exclamationmark.fill")
+                            .padding(12)
+                            .foregroundColor(.white)
+                            .background(.red,
+                               in: RoundedRectangle(cornerRadius: 12))
+                        }
                     }
-                    .buttonStyle(.borderedProminent)
                 } else {
                     if let characterItem = viewModel.characterItem {
                         AsyncImage(url: characterItem.imageUrl,
@@ -110,7 +115,7 @@ struct CharacterDetailView: View {
             }.onAppear {
                 viewModel.onAppear()
             }.navigationTitle(viewModel.characterItem?.name ?? "")
-                .background(viewModel.showLoading ? .clear : .rmGreyLight)
+                .background(viewModel.showLoading || viewModel.errorMessage != nil ? .clear : .rmGreyLight)
                 .scrollContentBackground(.hidden)
                 .clipShape(RoundedRectangle(cornerRadius: 16))
                 .padding(EdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 20))

@@ -23,11 +23,15 @@ struct CharactersListView: View {
                     .tint(.white)
             } else {
                 if let errorMessage = viewModel.errorMessage {
-                    Button(errorMessage, role: .destructive) {
-                        viewModel.onAppear()
+                    VStack {
+                        Button(action: viewModel.onAppear) {
+                          Label(errorMessage, systemImage: "person.crop.circle.badge.exclamationmark.fill")
+                            .padding(12)
+                            .foregroundColor(.white)
+                            .background(.red,
+                               in: RoundedRectangle(cornerRadius: 12))
+                        }
                     }
-                    .buttonStyle(.borderedProminent)
-                    
                 } else {
                     ScrollView {
                         LazyVGrid(columns: [GridItem(.adaptive(minimum: 100)),
