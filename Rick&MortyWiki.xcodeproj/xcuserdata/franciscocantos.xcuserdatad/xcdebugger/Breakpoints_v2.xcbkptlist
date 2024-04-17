@@ -7,63 +7,17 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "944E116A-5DAA-46E1-BAF4-0F24571188E0"
+            uuid = "CEEBA7AF-C46E-49E5-B505-D75B1E085CAC"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Rick&amp;MortyWiki/Infraesctructure/Networking/HTTPClient.swift"
+            filePath = "Rick&amp;MortyWiki/Presentation/CharacterDetailViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "18"
-            endingLineNumber = "18"
-            landmarkName = "requestAllCharacters()"
+            startingLineNumber = "29"
+            endingLineNumber = "29"
+            landmarkName = "onAppear()"
             landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "9E0B8401-A8D1-4CB0-B5F1-BD8BA980955D"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Rick&amp;MortyWiki/Data/CharacterDomainMapper.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "6"
-            endingLineNumber = "6"
-            landmarkName = "map(apiModels:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "9E0B8401-A8D1-4CB0-B5F1-BD8BA980955D - 466b98ae9eeb867d"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Rick_MortyWiki.CharacterDomainMapper.map(apiModels: Swift.Array&lt;RickMortySwiftApi.RMCharacterModel&gt;) -&gt; Swift.Array&lt;Rick_MortyWiki.CharacterDTO&gt;"
-                  moduleName = "Rick&amp;MortyWiki"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/kurro/Proyectos/Rick&amp;MortyWiki/Rick&amp;MortyWiki/Data/CharacterDomainMapper.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "6"
-                  endingLineNumber = "6">
-               </Location>
-               <Location
-                  uuid = "9E0B8401-A8D1-4CB0-B5F1-BD8BA980955D - cf6a39df793943b5"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (RickMortySwiftApi.RMCharacterModel) -&gt; Rick_MortyWiki.CharacterDTO in Rick_MortyWiki.CharacterDomainMapper.map(apiModels: Swift.Array&lt;RickMortySwiftApi.RMCharacterModel&gt;) -&gt; Swift.Array&lt;Rick_MortyWiki.CharacterDTO&gt;"
-                  moduleName = "Rick&amp;MortyWiki"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/kurro/Proyectos/Rick&amp;MortyWiki/Rick&amp;MortyWiki/Data/CharacterDomainMapper.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "6"
-                  endingLineNumber = "6">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

@@ -1,11 +1,11 @@
 import SwiftUI
 
-struct CharacterItemView: View {
+struct CharacterCardView: View {
     let item: CharacterViewItem
     
     var body: some View {
         VStack {
-            AsyncImage(url: item.image,
+            AsyncImage(url: item.imageUrl,
                        content: { image in
                 if let image = image.image {
                     image.resizable()

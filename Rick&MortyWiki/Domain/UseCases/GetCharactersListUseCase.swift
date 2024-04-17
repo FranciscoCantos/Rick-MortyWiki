@@ -1,7 +1,7 @@
 import Foundation
 
 protocol GetCharactersListUseCaseProtocol {
-    func execute() async -> Result<[CharacterBasicInfo], DomainError>
+    func execute() async -> Result<[CharacterInfo], DomainError>
 }
 
 class GetCharactersListUseCase: GetCharactersListUseCaseProtocol {
@@ -11,7 +11,7 @@ class GetCharactersListUseCase: GetCharactersListUseCaseProtocol {
         self.repository = repository
     }
     
-    func execute() async -> Result<[CharacterBasicInfo], DomainError> {
+    func execute() async -> Result<[CharacterInfo], DomainError> {
         return await repository.getAllCharactersList()
     }
 }

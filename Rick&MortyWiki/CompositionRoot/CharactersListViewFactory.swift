@@ -1,10 +1,11 @@
 import Foundation
 import RickMortySwiftApi
 
-class CharactersViewFactory {
+class CharactersListViewFactory {
     func createView() -> CharactersListView {
         return CharactersListView(viewModel: CharactersListViewModel(getCharactersListUseCase: createUseCase(),
-                                                                 errorMapper: createErrorMapper()))
+                                                                     errorMapper: createErrorMapper()),
+                                  createCharacterDetailView: createDetailView())
     }
     
     private func createUseCase() -> GetCharactersListUseCaseProtocol {
@@ -16,15 +17,24 @@ class CharactersViewFactory {
     }
     
     private func createRepository() -> CharactersRepositoryProtocol {
-        return CharactersRepository(apiDataSource: createDataSource())
+        return CharactersRepository(apiDataSource: createAPIDataSource(),
+                                    cacheDataSource: createCacheDataSource())
     }
     
-    private func createDataSource() -> APICharactersDataSourceProtocol {
+    private func createCacheDataSource() -> CharactersCacheDataSourceProtocol {
+        return CharactersCacheDataSource(container: SwiftDataContainer.shared())
+    }
+        
+    private func createAPIDataSource() -> APICharactersDataSourceProtocol {
         return APICharactersDataSource(restClient: createRestClient(),
                                        domainMapper: CharacterDomainMapper())
     }
     
     private func createRestClient() -> HTTPClient {
         return HTTPClient(apiClient: RMClient())
+    }
+    
+    private func createDetailView() -> CreateCharacterDetailViewProtocol {
+        return CharacterDetailViewFactory()
     }
 }

@@ -1,10 +1,12 @@
 import SwiftUI
 
 struct CharactersListView: View {
+    private let createCharacterDetailView: CreateCharacterDetailViewProtocol
     @ObservedObject private var viewModel: CharactersListViewModel
     
-    init(viewModel: CharactersListViewModel) {
+    init(viewModel: CharactersListViewModel, createCharacterDetailView: CreateCharacterDetailViewProtocol) {
         self.viewModel = viewModel
+        self.createCharacterDetailView = createCharacterDetailView
     }
     
     var body: some View {
@@ -15,7 +17,8 @@ struct CharactersListView: View {
                     .scaleEffect(3.0, anchor: .center)
                     .frame(width: 80, height: 80)
                     .clipShape(Circle())
-                    .shadow(radius: 10)
+                    .background(Color.rmGreyDark)
+                    .tint(.white)
             } else {
                 if let errorMessage = viewModel.errorMessage {
                     Button(errorMessage, role: .destructive) {
@@ -31,20 +34,18 @@ struct CharactersListView: View {
                                       content: {
                                 ForEach(viewModel.charactersItems, id: \.id) { character in
                                     NavigationLink {
-                                        //kurro createCryptoDetailView.createView(cryptoCurrency: crypto)
+                                        createCharacterDetailView.createView(forId: character.id)
                                     } label: {
-                                        CharacterItemView(item: character)
+                                        CharacterCardView(item: character)
                                     }
                                 }
                             })
                             .padding(20)
                         }.background(Color.rmGreyDark)
-                    }
+                    }.tint(.white)
                 }
             }
         }.onAppear {
-            viewModel.onAppear()
-        }.refreshable {
             viewModel.onAppear()
         }
     }

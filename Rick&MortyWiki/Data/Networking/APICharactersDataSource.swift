@@ -2,6 +2,7 @@ import Foundation
 
 protocol APICharactersDataSourceProtocol {
     func getAllCharacters() async -> Result<[CharacterDTO], HTTPClientError>
+    func getCharacter(forId: Int) async -> Result<CharacterDTO, HTTPClientError>
 }
 
 class APICharactersDataSource: APICharactersDataSourceProtocol {
@@ -22,6 +23,28 @@ class APICharactersDataSource: APICharactersDataSourceProtocol {
         
         let charactersDomainList = domainMapper.map(apiModels: charactersList)
         return .success(charactersDomainList)
+    }
+    
+    func getCharacter(forId id: Int) async -> Result<CharacterDTO, HTTPClientError> {
+        let result = await restClient.requestCharacter(forId: id)
+        
+        guard case .success(let character) = result else {
+            return .failure(handleError(error: result.failureValue as? HTTPClientError))
+        }
+        
+        let charactersDomain = CharacterDTO(id: character.id,
+                                            name: character.name,
+                                            url: character.url,
+                                            status: character.status,
+                                            species: character.species,
+                                            type: character.type,
+                                            gender: character.gender,
+                                            origin: character.origin.name,
+                                            location: character.location.name,
+                                            imageURL: character.image,
+                                            episodes: character.episode,
+                                            created: character.created)
+        return .success(charactersDomain)
     }
     
     private func handleError(error: HTTPClientError?) -> HTTPClientError {

@@ -1,6 +1,6 @@
 import Foundation
 
-struct CharacterViewItem {
+struct CharacterDetailViewItem {
     let id: Int
     let name: String
     let imageUrl: URL?
@@ -8,6 +8,13 @@ struct CharacterViewItem {
     let bulletStatus: String
     let species: String
     let description: String
+    let url: URL?
+    let type: String
+    let gender: CharacterGender
+    let origin: String
+    let location: String
+    let episodesList: [String]
+    let createdDate: Date?
     
     init(model: CharacterInfo) {
         self.id = model.id
@@ -15,6 +22,13 @@ struct CharacterViewItem {
         self.imageUrl = model.imageURL
         self.status = model.status.rawValue.capitalized
         self.species = model.species.capitalized
+        self.url = model.url
+        self.type = model.type
+        self.gender = model.gender
+        self.origin = model.origin
+        self.location = model.location
+        self.episodesList = model.episodesList
+        self.createdDate = model.createdDate
         
         switch model.status {
         case .alive:
@@ -25,6 +39,6 @@ struct CharacterViewItem {
             self.bulletStatus = "⚫️"
         }
         
-        self.description = bulletStatus + " - " + status
+        self.description = bulletStatus + status
     }
 }

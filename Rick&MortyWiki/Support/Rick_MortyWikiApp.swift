@@ -5,7 +5,7 @@ import SwiftData
 struct Rick_MortyWikiApp: App {
     var body: some Scene {
         WindowGroup {
-            MainContentView(charactersListView: CharactersViewFactory().createView())
+            MainContentView(charactersListView: CharactersListViewFactory().createView())
         }
     }
 }

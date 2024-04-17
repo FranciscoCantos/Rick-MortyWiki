@@ -1,15 +1,15 @@
 import Foundation
 
-enum CharacterStatus: String, CaseIterable {
-    case alive = "Alive"
-    case dead = "Dead"
+enum CharacterStatus: String, Codable {
+    case alive = "alive"
+    case dead = "dead"
     case unknown = "Unknown"
     
     init?(rawValue: String) {
-        switch rawValue {
-        case "Alive":
+        switch rawValue.lowercased() {
+        case "alive":
             self = .alive
-        case "Dead":
+        case "dead":
             self = .dead
         default:
             self = .unknown
