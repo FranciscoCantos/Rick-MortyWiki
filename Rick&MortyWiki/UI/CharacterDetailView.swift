@@ -8,7 +8,7 @@ struct CharacterDetailView: View {
     }
     
     var body: some View {
-        ZStack{
+        ZStack {
             ScrollView {
                 if let characterItem = viewModel.characterItem {
                     AsyncImage(url: characterItem.imageUrl) { phase in

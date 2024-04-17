@@ -3,13 +3,18 @@ import RickMortySwiftApi
 
 class CharactersListViewFactory {
     func createView() -> CharactersListView {
-        return CharactersListView(viewModel: CharactersListViewModel(getCharactersListUseCase: createUseCase(),
+        return CharactersListView(viewModel: CharactersListViewModel(getCharactersListUseCase: createGetUseCase(),
+                                                                     searchCharacterUseCase: createSearchUseCase(),
                                                                      errorMapper: createErrorMapper()),
                                   createCharacterDetailView: createDetailView())
     }
     
-    private func createUseCase() -> GetCharactersListUseCaseProtocol {
+    private func createGetUseCase() -> GetCharactersListUseCaseProtocol {
         return GetCharactersListUseCase(repository: createRepository())
+    }
+    
+    private func createSearchUseCase() -> SearchCharacterUseCaseProtocol {
+        return SearchCharacterUseCase(repository: createRepository())
     }
     
     private func createErrorMapper() -> PresentationErrorMapper {

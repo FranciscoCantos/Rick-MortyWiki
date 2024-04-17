@@ -2,8 +2,10 @@ import SwiftUI
 
 struct CharactersListView: View {
     private let createCharacterDetailView: CreateCharacterDetailViewProtocol
-    @ObservedObject private var viewModel: CharactersListViewModel
     
+    @ObservedObject private var viewModel: CharactersListViewModel
+    @State private var searchText: String = ""
+
     init(viewModel: CharactersListViewModel, createCharacterDetailView: CreateCharacterDetailViewProtocol) {
         self.viewModel = viewModel
         self.createCharacterDetailView = createCharacterDetailView
@@ -29,17 +31,28 @@ struct CharactersListView: View {
                 } else {
                     NavigationStack {
                         ScrollView {
-                            LazyVGrid(columns: [GridItem(.flexible(minimum: 100)),
-                                                GridItem(.flexible(minimum: 100))],
+                            LazyVGrid(columns: [GridItem(.flexible(minimum: 100))],
                                       content: {
-                                ForEach(viewModel.charactersItems, id: \.id) { character in
-                                    NavigationLink {
-                                        createCharacterDetailView.createView(forId: character.id)
-                                    } label: {
-                                        CharacterCardView(item: character)
+                                if viewModel.charactersItems.isEmpty {
+                                    VStack(alignment: .center) {
+                                        Text("Sorry, no results were found. Please repeat your search.")
+                                            .font(.title)
+                                    }
+                                } else {
+                                    ForEach(viewModel.charactersItems, id: \.id) { character in
+                                        NavigationLink {
+                                            createCharacterDetailView.createView(forId: character.id)
+                                        } label: {
+                                            CharacterCardView(item: character)
+                                        }
                                     }
                                 }
-                            })
+                            }).searchable(text: $searchText,
+                                          placement: .navigationBarDrawer(displayMode:.always))
+                                .preferredColorScheme(.dark)
+                                .onChange(of: searchText) { oldValue, newValue in
+                                viewModel.search(cryptoName: newValue)
+                            }
                             .padding(20)
                         }.background(Color.rmGreyDark)
                     }.tint(.white)

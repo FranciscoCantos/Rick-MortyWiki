@@ -3,6 +3,7 @@ import Foundation
 protocol CharactersRepositoryProtocol {
     func getAllCharactersList() async -> Result<[CharacterInfo], DomainError>
     func getCharacterDetail(forId: Int) async -> Result<CharacterInfo, DomainError>
+    func searchCharacter(byName: String) async -> Result<[CharacterInfo], DomainError>
 }
 
 class CharactersRepository: CharactersRepositoryProtocol {
@@ -15,9 +16,9 @@ class CharactersRepository: CharactersRepositoryProtocol {
     }
     
     func getAllCharactersList() async -> Result<[CharacterInfo], DomainError> {
-        let cacheCaracters = await cacheDataSource.getCharacters()
-        if !cacheCaracters.isEmpty {
-            return .success(cacheCaracters)
+        let cacheCharacters = await cacheDataSource.getCharacters()
+        if !cacheCharacters.isEmpty {
+            return .success(cacheCharacters)
         }
         
         let result = await apiDataSource.getAllCharacters()
@@ -38,9 +39,9 @@ class CharactersRepository: CharactersRepositoryProtocol {
     }
     
     func getCharacterDetail(forId id: Int) async -> Result<CharacterInfo, DomainError> {
-        let cacheCaracters = await cacheDataSource.getCharacters()
-        if !cacheCaracters.isEmpty {
-            if let character = cacheCaracters.first(where: { $0.id == id }) {
+        let cacheCharacters = await cacheDataSource.getCharacters()
+        if !cacheCharacters.isEmpty {
+            if let character = cacheCharacters.first(where: { $0.id == id }) {
                 return .success(character)
             }
         }
@@ -54,5 +55,22 @@ class CharactersRepository: CharactersRepositoryProtocol {
         let character = CharacterInfo(dto: characterDto)
         
         return .success(character)
+    }
+    
+    func searchCharacter(byName name: String) async -> Result<[CharacterInfo], DomainError> {
+        let result = await getAllCharactersList()
+        
+        guard case .success(let charactersList) = result else {
+            return result
+        }
+        
+        guard name != "" else {
+            return result
+        }
+        
+        let filteredCharactersList = charactersList.filter {
+            $0.name.lowercased().contains(name.lowercased())
+        }
+        return .success(filteredCharactersList)
     }
 }
