@@ -42,6 +42,17 @@ class RMAPIDataSource: APICharactersDataSourceProtocol {
         return .success(charactersDomain)
     }
     
+    func searchCharacter(forName name: String) async -> Result<[CharacterDTO], HTTPClientError> {
+        let result = await restClient.requestAllCharacters()
+        
+        guard case .success(let charactersList) = result else {
+            return .failure(handleError(error: result.failureValue as? HTTPClientError))
+        }
+        
+        let filteredCharacters = domainMapper.map(apiModels: charactersList).filter { $0.name.lowercased().contains(name.lowercased())}
+        return .success(filteredCharacters)
+    }
+        
     private func handleError(error: HTTPClientError?) -> HTTPClientError {
         guard let error = error else { return .generic }
         return error

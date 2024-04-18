@@ -47,7 +47,11 @@ struct CharactersListView: View {
                                       placement: .navigationBarDrawer(displayMode:.always))
                         .preferredColorScheme(.dark)
                         .onChange(of: searchText) { oldValue, newValue in
-                            viewModel.search(cryptoName: newValue)
+                            if searchText.isEmpty {
+                                viewModel.onAppear()
+                            } else {
+                                viewModel.search(characterName: newValue)
+                            }
                         }
                         .padding(20)
                     }.background(Color.rmGreyDark)

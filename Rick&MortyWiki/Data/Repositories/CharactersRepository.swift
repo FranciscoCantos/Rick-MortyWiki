@@ -56,20 +56,21 @@ class CharactersRepository: CharactersRepositoryProtocol {
         return .success(charactersListDomain)
     }
         
-    func searchCharacter(byName name: String) async -> Result<[CharacterInfo], DomainError> {
-        let result = await getAllCharactersList()
+    func searchCharacter(byName name: String) async -> Result<[CharacterInfo], DomainError> {        
+        let result = await apiDataSource.searchCharacter(forName: name)
         
         guard case .success(let charactersList) = result else {
-            return result
+            return .failure(.generic)
         }
         
-        guard name != "" else {
-            return result
+        if charactersList.isEmpty {
+            return .failure(.emptyResponse)
         }
+                
+        let charactersListDomain = charactersList.map { CharacterInfo(dto: $0) }
         
-        let filteredCharactersList = charactersList.filter {
-            $0.name.lowercased().contains(name.lowercased())
-        }
-        return .success(filteredCharactersList)
+        await cacheDataSource.saveCharacters(charactersListDomain)
+
+        return .success(charactersListDomain)
     }
 }

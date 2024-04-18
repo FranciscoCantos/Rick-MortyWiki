@@ -28,10 +28,10 @@ class CharactersListViewModel: ObservableObject {
         }
     }
     
-    func search(cryptoName: String) {
-        isSearching = !cryptoName.isEmpty
+    func search(characterName: String) {
+        isSearching = !characterName.isEmpty
         Task {
-            let result = await searchCharacterUseCase.execute(characterName: cryptoName)
+            let result = await searchCharacterUseCase.execute(characterName: characterName)
             
             guard case .success(let characters) = result else {
                 handleError(error: result.failureValue as? DomainError)
@@ -43,7 +43,7 @@ class CharactersListViewModel: ObservableObject {
             Task { @MainActor in
                 self.showLoading = false
                 self.errorMessage = nil
-                self.charactersItems = charactersItems
+                self.charactersItems = charactersItems.filter({ $0.name.contains(characterName) })
             }
         }
     }
@@ -74,6 +74,7 @@ class CharactersListViewModel: ObservableObject {
             Task { @MainActor in
                 self.showLoading = false
                 self.errorMessage = nil
+                print("-->> Insert \(charactersItems.count) > \(self.charactersItems.count)")
                 self.charactersItems = charactersItems
             }
         }
@@ -94,6 +95,7 @@ class CharactersListViewModel: ObservableObject {
             Task { @MainActor in
                 self.showLoading = false
                 self.errorMessage = nil
+                print("-->> Add \(charactersItems.count) > \(self.charactersItems.count)")
                 self.charactersItems.append(contentsOf: charactersItems)
             }
         }
