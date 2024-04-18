@@ -1,33 +1,40 @@
 import Foundation
-import RickMortySwiftApi
 
 protocol HTTPClientProtocol {
-    func requestAllCharacters() async -> Result<[RMCharacterModel], HTTPClientError>
-    func requestCharacter(forId: Int) async -> Result<RMCharacterModel, HTTPClientError>
+    func makeRequest(_ request: HTTPRequest) async -> Result<Data, HTTPClientError>
 }
 
 class HTTPClient: HTTPClientProtocol {
-    private let apiClient: RMClient
+    let session: URLSession
+    let errorsResolver: HTTPErrorsResolver
+    let requestBuilder: HTTPRequestBuilder
     
-    init(apiClient: RMClient) {
-        self.apiClient = apiClient
+    init(session: URLSession = .shared, requestBuilder: HTTPRequestBuilder, errorsResolver: HTTPErrorsResolver) {
+        self.session = session
+        self.errorsResolver = errorsResolver
+        self.requestBuilder = requestBuilder
     }
     
-    func requestAllCharacters() async -> Result<[RMCharacterModel], HTTPClientError> {
-        do {
-            let result = try await apiClient.character().getAllCharacters()
-            return .success(result)
-        } catch {
-            return .failure(.generic)
+    func makeRequest(_ request: HTTPRequest) async -> Result<Data, HTTPClientError> {
+        guard let url = requestBuilder.url(request: request) else {
+            return .failure(.badURL)
         }
-    }
-    
-    func requestCharacter(forId id: Int) async -> Result<RMCharacterModel, HTTPClientError> {
+        
         do {
-            let result = try await apiClient.character().getCharacterByID(id: id)
-            return .success(result)
+            let result = try await session.data(from: url)
+            
+            guard let response = result.1 as? HTTPURLResponse else {
+                return .failure(.responseError)
+            }
+            
+            guard response.statusCode == 200 else {
+                return .failure(errorsResolver.resolve(errorCode: response.statusCode))
+            }
+            
+            return .success(result.0)
+            
         } catch {
-            return .failure(.generic)
+            return .failure(errorsResolver.resolve(error: error))
         }
     }
 }

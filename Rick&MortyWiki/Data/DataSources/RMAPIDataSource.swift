@@ -1,15 +1,10 @@
 import Foundation
 
-protocol APICharactersDataSourceProtocol {
-    func getAllCharacters() async -> Result<[CharacterDTO], HTTPClientError>
-    func getCharacter(forId: Int) async -> Result<CharacterDTO, HTTPClientError>
-}
-
-class APICharactersDataSource: APICharactersDataSourceProtocol {
-    private let restClient: HTTPClient
+class RMAPIDataSource: APICharactersDataSourceProtocol {
+    private let restClient: RMAPIManager
     private let domainMapper: CharacterDomainMapper
     
-    init(restClient: HTTPClient, domainMapper: CharacterDomainMapper) {
+    init(restClient: RMAPIManager, domainMapper: CharacterDomainMapper) {
         self.restClient = restClient
         self.domainMapper = domainMapper
     }
@@ -31,7 +26,7 @@ class APICharactersDataSource: APICharactersDataSourceProtocol {
         guard case .success(let character) = result else {
             return .failure(handleError(error: result.failureValue as? HTTPClientError))
         }
-        
+                
         let charactersDomain = CharacterDTO(id: character.id,
                                             name: character.name,
                                             url: character.url,

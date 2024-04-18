@@ -5,7 +5,7 @@ struct CharactersListView: View {
     
     @ObservedObject private var viewModel: CharactersListViewModel
     @State private var searchText: String = ""
-
+    
     init(viewModel: CharactersListViewModel, createCharacterDetailView: CreateCharacterDetailViewProtocol) {
         self.viewModel = viewModel
         self.createCharacterDetailView = createCharacterDetailView
@@ -14,24 +14,10 @@ struct CharactersListView: View {
     var body: some View {
         NavigationStack {
             if viewModel.showLoading {
-                ProgressView()
-                    .progressViewStyle(.circular)
-                    .scaleEffect(3.0, anchor: .center)
-                    .frame(width: 80, height: 80)
-                    .clipShape(Circle())
-                    .background(Color.rmGreyDark)
-                    .tint(.white)
+               LoadingView()
             } else {
                 if let errorMessage = viewModel.errorMessage {
-                    VStack {
-                        Button(action: viewModel.onAppear) {
-                          Label(errorMessage, systemImage: "person.crop.circle.badge.exclamationmark.fill")
-                            .padding(12)
-                            .foregroundColor(.white)
-                            .background(.red,
-                               in: RoundedRectangle(cornerRadius: 12))
-                        }
-                    }
+                    ErrorView(text: errorMessage, action: viewModel.onAppear)
                 } else {
                     ScrollView {
                         LazyVGrid(columns: [GridItem(.adaptive(minimum: 100)),
@@ -49,6 +35,11 @@ struct CharactersListView: View {
                                         createCharacterDetailView.createView(forId: character.id)
                                     } label: {
                                         CharacterCardView(item: character)
+                                            .task {
+                                                if viewModel.isTheLastCharacter(character.id) {
+                                                    viewModel.fecthMoreCharacters()
+                                                }
+                                            }
                                     }
                                 }
                             }

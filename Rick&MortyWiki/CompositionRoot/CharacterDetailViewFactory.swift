@@ -13,20 +13,34 @@ class CharacterDetailViewFactory: CreateCharacterDetailViewProtocol {
     }
     
     private func createRepository() -> CharacterDetailRepositoryProtocol {
-        return CharacterDetailRepository(apiDataSource: createAPIDataSource(),
+        return CharacterDetailRepository(apiDataSource: createHTTPAPIDataSource(),
                                          cacheDataSource: createCacheDataSource())
     }
     
     private func createCacheDataSource() -> CharactersCacheDataSourceProtocol {
         return CharactersCacheDataSource(container: SwiftDataContainer.shared())
     }
-        
-    private func createAPIDataSource() -> APICharactersDataSourceProtocol {
-        return APICharactersDataSource(restClient: createRestClient(),
+    
+    private func createHTTPAPIDataSource() -> APICharactersDataSourceProtocol {
+        return RestAPIDataSource(httpClient: createHTTPClient())
+    }
+
+    private func createRMAPIDataSource() -> APICharactersDataSourceProtocol {
+        return RMAPIDataSource(restClient: createRestClient(),
                                        domainMapper: CharacterDomainMapper())
     }
     
-    private func createRestClient() -> HTTPClient {
-        return HTTPClient(apiClient: RMClient())
+    private func createRestClient() -> RMAPIManager {
+        return RMAPIManager(apiClient: RMClient())
+    }
+    
+    
+    private func createHTTPClient() -> HTTPClientProtocol {
+        return HTTPClient(requestBuilder: HTTPRequestBuilder(),
+                          errorsResolver: HTTPErrorsResolver())
+    }
+            
+    private func createRMApiManager() -> RMAPIManager {
+        return RMAPIManager(apiClient: RMClient())
     }
 }
