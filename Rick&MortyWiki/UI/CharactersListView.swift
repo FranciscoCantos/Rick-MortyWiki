@@ -14,7 +14,7 @@ struct CharactersListView: View {
     var body: some View {
         NavigationStack {
             if viewModel.showLoading {
-               LoadingView()
+                LoadingView()
             } else {
                 if let errorMessage = viewModel.errorMessage {
                     ErrorView(text: errorMessage, action: viewModel.onAppear)

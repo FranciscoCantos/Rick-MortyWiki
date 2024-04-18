@@ -8,6 +8,7 @@ class CharactersListViewModel: ObservableObject {
     
     @Published var charactersItems: [CharacterViewItem] = []
     @Published var showLoading: Bool = false
+    @Published private var isSearching: Bool = false
     @Published var errorMessage: String?
     
     init(getCharactersListUseCase: GetCharactersListUseCaseProtocol, getMoreCharactersListUseCase: GetMoreCharactersListUseCaseProtocol, searchCharacterUseCase: SearchCharacterUseCaseProtocol, errorMapper: PresentationErrorMapper) {
@@ -22,10 +23,13 @@ class CharactersListViewModel: ObservableObject {
     }
     
     func fecthMoreCharacters() {
-        requestMoreCharacters()
+        if !isSearching {
+            requestMoreCharacters()
+        }
     }
     
     func search(cryptoName: String) {
+        isSearching = !cryptoName.isEmpty
         Task {
             let result = await searchCharacterUseCase.execute(characterName: cryptoName)
             
