@@ -74,7 +74,6 @@ class CharactersListViewModel: ObservableObject {
             Task { @MainActor in
                 self.showLoading = false
                 self.errorMessage = nil
-                print("-->> Insert \(charactersItems.count) > \(self.charactersItems.count)")
                 self.charactersItems = charactersItems
             }
         }
@@ -95,7 +94,6 @@ class CharactersListViewModel: ObservableObject {
             Task { @MainActor in
                 self.showLoading = false
                 self.errorMessage = nil
-                print("-->> Add \(charactersItems.count) > \(self.charactersItems.count)")
                 self.charactersItems.append(contentsOf: charactersItems)
             }
         }

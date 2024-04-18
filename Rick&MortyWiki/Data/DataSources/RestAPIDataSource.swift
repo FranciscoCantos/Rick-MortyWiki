@@ -65,7 +65,6 @@ class RestAPIDataSource: APICharactersDataSourceProtocol {
 
         
         func makeSearchRequest(_ queryParams: [String: String]) async -> Result<[CharacterDTO], HTTPClientError> {
-            print("-->> makeSearchRequest : \(queryParams)")
             let request = HTTPRequest(baseURL: baseURL,
                                       path: Paths.characters.rawValue,
                                       method: .get,
