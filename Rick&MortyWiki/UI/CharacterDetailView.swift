@@ -12,21 +12,10 @@ struct CharacterDetailView: View {
             Color.rmGreyDark.edgesIgnoringSafeArea(.all)
             ScrollView {
                 if viewModel.showLoading {
-                    ProgressView()
-                        .progressViewStyle(.circular)
-                        .scaleEffect(3.0, anchor: .center)
-                        .frame(width: 80, height: 80)
-                        .clipShape(Circle())
-                        .tint(.white)
+                    LoadingView()
                 } else if let errorMessage = viewModel.errorMessage {
-                    VStack {
-                        Button(action: viewModel.onAppear) {
-                          Label(errorMessage, systemImage: "person.crop.circle.badge.exclamationmark.fill")
-                            .padding(12)
-                            .foregroundColor(.white)
-                            .background(.red,
-                               in: RoundedRectangle(cornerRadius: 12))
-                        }
+                    ErrorView(text: errorMessage) {
+                        viewModel.onAppear()
                     }
                 } else {
                     if let characterItem = viewModel.characterItem {
@@ -68,6 +57,10 @@ struct CharacterDetailView: View {
                                     .font(.system(size: 16))
                                     .bold()
                                     .foregroundStyle(.white)
+                                Text("Appearances:")
+                                    .font(.system(size: 16))
+                                    .bold()
+                                    .foregroundStyle(.white)
                             }
                             Spacer()
                             VStack(alignment: .trailing) {
@@ -87,6 +80,9 @@ struct CharacterDetailView: View {
                                     .font(.system(size: 16))
                                     .foregroundStyle(.white)
                                 Text(characterItem.createdDate?.formatted() ?? "Not Available")
+                                    .font(.system(size: 16))
+                                    .foregroundStyle(.white)
+                                Text("\(characterItem.episodesList.count)")
                                     .font(.system(size: 16))
                                     .foregroundStyle(.white)
                             }

@@ -2,6 +2,7 @@ import Foundation
 
 protocol CharactersRepositoryProtocol {
     func getAllCharactersList() async -> Result<[CharacterInfo], DomainError>
+    func getMoreCharactersList() async -> Result<[CharacterInfo], DomainError>
     func searchCharacter(byName: String) async -> Result<[CharacterInfo], DomainError>
 }
 
@@ -36,21 +37,40 @@ class CharactersRepository: CharactersRepositoryProtocol {
 
         return .success(charactersListDomain)
     }
-        
-    func searchCharacter(byName name: String) async -> Result<[CharacterInfo], DomainError> {
-        let result = await getAllCharactersList()
+    
+    func getMoreCharactersList() async -> Result<[CharacterInfo], DomainError> {
+        let result = await apiDataSource.getAllCharacters()
         
         guard case .success(let charactersList) = result else {
-            return result
+            return .failure(.generic)
         }
         
-        guard name != "" else {
-            return result
+        if charactersList.isEmpty {
+            return .failure(.emptyResponse)
+        }
+                
+        let charactersListDomain = charactersList.map { CharacterInfo(dto: $0) }
+        
+        await cacheDataSource.saveCharacters(charactersListDomain)
+
+        return .success(charactersListDomain)
+    }
+        
+    func searchCharacter(byName name: String) async -> Result<[CharacterInfo], DomainError> {        
+        let result = await apiDataSource.searchCharacter(forName: name)
+        
+        guard case .success(let charactersList) = result else {
+            return .failure(.generic)
         }
         
-        let filteredCharactersList = charactersList.filter {
-            $0.name.lowercased().contains(name.lowercased())
+        if charactersList.isEmpty {
+            return .failure(.emptyResponse)
         }
-        return .success(filteredCharactersList)
+                
+        let charactersListDomain = charactersList.map { CharacterInfo(dto: $0) }
+        
+        await cacheDataSource.saveCharacters(charactersListDomain)
+
+        return .success(charactersListDomain)
     }
 }
