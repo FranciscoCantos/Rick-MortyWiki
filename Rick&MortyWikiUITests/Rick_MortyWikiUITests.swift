@@ -1,10 +1,3 @@
-//
-//  Rick_MortyWikiUITests.swift
-//  Rick&MortyWikiUITests
-//
-//  Created by Kurro on 16/4/24.
-//
-
 import XCTest
 
 final class Rick_MortyWikiUITests: XCTestCase {

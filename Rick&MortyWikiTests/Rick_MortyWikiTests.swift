@@ -1,10 +1,3 @@
-//
-//  Rick_MortyWikiTests.swift
-//  Rick&MortyWikiTests
-//
-//  Created by Kurro on 16/4/24.
-//
-
 import XCTest
 @testable import Rick_MortyWiki
 
