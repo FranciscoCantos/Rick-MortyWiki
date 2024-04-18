@@ -10,7 +10,7 @@ Learning app to show a list of characters form Rick&Morty tv show and its detail
 * MVVM Architecture
 * SwitUI to build the views
 * Async/Await for network requests
-* AysncImage for download and cache images
+* AsyncImage for download and cache images
 * SwiftData for characters cache
 * Development to change between diferent data sources ([Rick&Morty API](https://rickandmortyapi.com/) or [Rick&Morty API SwiftClient](https://github.com/benjaminbruch/Rick-and-Morty-Swift-API))
 
